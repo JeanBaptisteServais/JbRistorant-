@@ -1,7 +1,13 @@
 # JbRistorant-
 Apriori algorythme, delais programme, serveur min distance
 
-awaible on: ....
+awaible on: https://jbristorante.herokuapp.com/
+
+1) Command you're plate
+
+2) see the delais 
+
+3) track the serveur
 
 <img src="https://user-images.githubusercontent.com/54853371/88558028-4d766f80-d02b-11ea-8b2e-18d1d886d285.png" width="1000px;">
 
