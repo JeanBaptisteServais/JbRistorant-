@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<title>{{name}}</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+.mySlides {display: none}
+</style>
+<body class="w3-content w3-border-left w3-border-right">
+
+
+
+
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-light-grey w3-collapse w3-top" style="z-index:3;width:260px" id="mySidebar">
+
+  <div class="w3-container w3-display-container w3-padding-16">
+    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-transparent w3-display-topright"></i>
+    <h3>{{name}}</h3>
+    <h3>from ${{price}}</h3>
+    <hr>
+                    
+    <p>
+        <button class="w3-button w3-block w3-green w3-left-align" type="button" onclick="addProduct()">
+            <i class="fa fa-search w3-margin-right"></i>
+            Ajouter
+        </button>
+    </p>
+    <p>
+        <button class="w3-button w3-block w3-green w3-left-align" type="submit" onclick="endChoice()">
+            <i class="fa fa-search w3-margin-right"></i>
+            Terminer
+        </button>
+    </p>
+
+
+  </div>
+  <div class="w3-bar-block">
+    <a href="#description" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-building"></i> Description</a>
+    <a href="#suggestion" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-building"></i> Suggestion</a>
+    <a href="{{lastPage}}" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-building"></i> Retour menu</a>
+  </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+  <span class="w3-bar-item">Rental</span>
+  <a href="javascript:void(0)" class="w3-right w3-bar-item w3-button" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-white" style="margin-left:260px">
+
+  <!-- Push down content on small screens -->
+  <div class="w3-hide-large" style="margin-top:80px"></div>
+
+  <!-- Slideshow Header -->
+  <div class="w3-container" id="apartment">
+    <h2 class="w3-text-green">{{name}}</h2>
+    <div class="w3-display-container mySlides">
+    <img src="{{picture}}" 
+        style="width:50%;margin-bottom:-6px;border:1px solid black;">
+      <div class="w3-display-bottomleft w3-container w3-black">
+        <p>{{name}}</p>
+      </div>
+    </div>
+
+
+    <div class="w3-display-container mySlides">
+    <img src="{{pictureSugg1}}" 
+    style="width:50%;margin-bottom:-6px;border:1px solid black;">
+      <div class="w3-display-bottomleft w3-container w3-black">
+        <p>{{suggestion1}}</p>
+      </div>
+    </div>
+
+
+    <div class="w3-display-container mySlides">
+    <img src="{{pictureSugg2}}"
+    style="width:50%;margin-bottom:-6px;border:1px solid black;">
+      <div class="w3-display-bottomleft w3-container w3-black">
+        <p>{{suggestion2}}</p>
+      </div>
+    </div>
+
+
+    <div class="w3-display-container mySlides">
+    <img src="{{pictureSugg3}}" 
+    style="width:50%;margin-bottom:-6px;border:1px solid black;">
+      <div class="w3-display-bottomleft w3-container w3-black">
+        <p>{{suggestion3}}</p>
+      </div>
+    </div>
+
+
+
+
+ 
+
+  
+
+
+
+
+
+
+  </div>
+
+
+
+
+  <div class="w3-row-padding w3-section">
+    <div class="w3-col s3">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="{{picture}}" 
+      style="width:100%;cursor:pointer" onclick="currentDiv(1)" title="{{name}}">
+    </div>
+    <div class="w3-col s3">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="{{pictureSugg1}}"
+       style="width:100%;cursor:pointer" onclick="currentDiv(2)" title="{{suggestion1}}">
+    </div>
+    <div class="w3-col s3">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="{{pictureSugg2}}"
+       style="width:100%;cursor:pointer" onclick="currentDiv(3)" title="{{suggestion2}}">
+    </div>
+    <div class="w3-col s3">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="{{pictureSugg3}}"
+      style="width:100%;cursor:pointer" onclick="currentDiv(4)" title="{{suggestion3}}">
+    </div>
+  </div>
+
+
+  <div class="w3-container" id="description">
+    <h4><strong>{{name}}</strong></h4>
+    <div class="w3-row w3-large">
+      <div class="w3-col s6">
+        <p><i class="fa fa-fw fa-male"></i> {{info1}}</p>
+        <p><i class="fa fa-fw fa-bath"></i> {{info2}}</p>
+        <p><i class="fa fa-fw fa-bed"></i> {{info3}}</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="w3-container">
+    <h4 id="suggestion"><strong>Suggestions</strong></h4>
+    <div class="w3-row w3-large">
+      <div class="w3-col s6">
+        <p><i class="fa fa-fw fa-male"></i> {{suggestion1}}</p>
+        <p><i class="fa fa-fw fa-bath"></i> {{suggestion2}}</p>
+        <p><i class="fa fa-fw fa-bed"></i> {{suggestion3}}</p>
+      </div>
+      <div class="w3-col s6">
+        <p><i class="fa fa-fw fa-clock-o"></i> Prix: Check In: After 3PM</p>
+        <p><i class="fa fa-fw fa-clock-o"></i> Prix: Check Out: 12PM</p>
+        <p><i class="fa fa-fw fa-clock-o"></i> Prix: Check Out: 12PM</p>
+      </div>
+    </div>
+  </div>
+
+
+  <footer class="w3-container w3-padding-16" style="margin-top:32px">Powered by
+     <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></footer>
+
+<!-- End page content -->
+</div>
+
+<!-- Subscribe Modal -->
+<div id="subscribe" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom w3-padding-large">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('subscribe').style.display='none'" class="fa fa-remove w3-button w3-xlarge w3-right w3-transparent"></i>
+      <h2 class="w3-wide">SUBSCRIBE</h2>
+      <p>Join our mailing list to receive updates on available dates and special offers.</p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail"></p>
+      <button type="button" class="w3-button w3-padding-large w3-green w3-margin-bottom" onclick="document.getElementById('subscribe').style.display='none'">Subscribe</button>
+    </div>
+  </div>
+</div>
+
+
+<form action="{{lastPage}}" method="POST">{% csrf_token %}
+    <input type="submit" name="products" value="" style="display:none;" id="buttonDeclencheur">
+    <div id="choiceProduct" name="choiceProduct" value=""></div>
+</form>
+
+
+
+<script>
+// Script to open and close sidebar when on tablets and phones
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+// Slideshow Apartment Images
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  listePicture = [ "{{name}}", "{{suggestion1}}", "{{suggestion2}}", "{{suggestion3}}"]
+
+  showDivs(slideIndex = n);
+
+  divHidden = document.getElementById("choiceProduct");
+  divHidden.value = listePicture[n - 1];
+}
+
+
+
+function addProduct()
+{
+
+    divHidden = document.getElementById("choiceProduct");
+
+    if (divHidden.value == undefined){
+        product = "{{name}}";
+    }
+    else{
+        product = divHidden.value;
+    }
+
+    input = document.getElementById("buttonDeclencheur");
+    input.value += product + ",";
+
+}
+function endChoice()
+{
+
+    input = document.getElementById("buttonDeclencheur");
+    input.value += "-" + "{{products}}";
+    input.click();
+}
+
+
+
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+  }
+  x[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " w3-opacity-off";
+}
+</script>
+
+</body>
+</html>

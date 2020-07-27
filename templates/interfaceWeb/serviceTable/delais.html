@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="shortcut icon" type="image/ico" href="img/favicon.gif" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+        <script src="{% static 'js/globalFunction/globalFunction.js' %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+        <title> titre </title>
+    </head>
+    <body>
+        <!-- Navbar (sit on top) -->
+        {% include "interfaceWeb/navebarre.html" %}
+        <!-- !PAGE CONTENT! -->
+        <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px" id="waitingCommand">
+                <!-- First Photo Grid-->
+                <div class="w3-row-padding w3-padding-10 w3-center" id="food">
+                <div class="w3-quarter">
+                    <img src="{{locPlate1}}" alt="Sandwich" style="width:90%" id="plate1Div">
+                    <h4 id="plate1H">{{plate1}}</h4>
+                </div>
+                <div class="w3-quarter">
+                    <img src="{{locPlate2}}" alt="Sandwich" style="width:90%" id="plate2Div">
+                    <h4 id="plate2H">{{plate2}}</h4>
+                </div>
+                <div class="w3-quarter">
+                    <img src="{{locPlate3}}" alt="Sandwich" style="width:90%" id="plate3Div">
+                    <h4 id="plate3H">{{plate3}}</h4>
+                </div>
+                <div class="w3-quarter" style="float:right;">
+                    <img src="https://www.w3schools.com/w3images/chef.jpg" alt="Sandwich" style="width:90%">
+                    <h3 id="plate2Div">Temps d'attente estimé: <span style="color:red;">{{estimation}}</span></h3>
+                    <a href="#" class="w3-bar-item w3-button w3-padding-16" onclick="commandCourse()"><i class="fa fa-building"></i>
+                         Voir les commandes en cours
+                    </a>
+                    <form action="/client/serviceTable/" method="POST">
+                        {% csrf_token %}
+                        <input type="submit" value="{{assignationTable}}" name="assignationTable" id="assignationTable">
+                    </form>
+                    <a href="#" 
+                    class="w3-bar-item w3-button w3-padding-16"
+                    onclick="assignationTable(event, 'assignationTable')"><i class="fa fa-building"></i>
+                         Voir votre assignation à table
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- !PAGE CONTENT! -->
+        <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px" id="allCommands">
+            <!-- First Photo Grid-->
+            <div class="w3-row-padding w3-padding-10 w3-center" id="food">
+                {% for i in commands %}
+                    <div class="w3-quarter" id="commands">
+                        <div style="border:1px solid black">
+                            <p>
+                                Entrées: {{i.0}}
+                                plats: {{i.1}}
+                                desserts: {{i.2}}
+                                delais: {{i.3}}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>
+
+<style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
+    .w3-bar-block .w3-bar-item {padding:20px}
+    input{ border:1px solid black;}
+    input:hover{cursor:pointer;}
+    #allCommands{display:none;}
+    #commands{padding-top:1em;}
+    #assignationTable{display:none;}
+</style>
+
+<script>
+//Stop the href click, and make the input submit container value click.
+function assignationTable(e, idDiv)
+{
+    e.preventDefault();
+    input = document.getElementById(idDiv);
+    input.click();
+}
+//Display none a part and make appear an other.
+function commandCourse()
+{
+    document.getElementById("waitingCommand").style.display = "none";
+    document.getElementById("allCommands").style.display = "block";
+        
+}
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+}
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+//From view if data is empty undisplay it.
+function toHidde(plateGabarit, divPlateId, titreDiv)
+{
+    if (plateGabarit == "")
+    {
+        document.getElementById(divPlateId).style.display  = "none";
+         document.getElementById(titreDiv).style.display  = "none";
+    }
+}
+toHidde("{{plate1}}", "plate1Div", "plate1H");
+toHidde("{{plate2}}", "plate2Div", "plate2H");
+toHidde("{{plate3}}", "plate3Div", "plate3H");
+</script>

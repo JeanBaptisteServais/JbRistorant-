@@ -1,0 +1,216 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="shortcut icon" type="image/ico" href="img/favicon.gif" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+        <title> Entrées </title>
+    </head>
+    <body>
+        <!-- Navbar (sit on top) -->
+        {% include "interfaceWeb/navebarre.html" %}
+        <!-- !PAGE CONTENT! -->
+        <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+            <div class="w3-center w3-padding-32">
+                <div class="w3-bar">
+                    <!-- To other hidden input selection template 1 
+                        Transfert data with input on click on href button -->
+                    <form action="/client/selectionProd1/" method="POST">{% csrf_token %}
+                        <input type="submit" id="toPageOne" name="page" style="display:none;">
+                    </form>
+                     <!-- To other hidden input selection template 2 -->
+                    <form action="/client/selectionProd2/" method="POST">{% csrf_token %}
+                        <input type="submit" id="toPageTwo" name="page" style="display:none;">
+                    </form>
+                     <!-- To other hidden input selection template 3 -->
+                    <form action="/client/selectionProd3/" method="POST">{% csrf_token %}
+                        <input type="submit" id="toPageThree" name="page" style="display:none;">
+                    </form>
+                    <!-- To other href selection template 1 -->
+                    <a href="/client/selectionProd1" class="w3-bar-item w3-black w3-hover-black"
+                        onclick="hrefing(event, 'toPageOne')">1</a>
+                    <!-- To other href selection template 2 -->
+                    <a href="/client/selectionProd2" class="w3-bar-item w3-button w3-button"
+                        onclick="hrefing(event, 'toPageTwo')">2</a>
+                    <!-- To other href selection template 3 -->
+                    <a href="/client/selectionProd3" class="w3-bar-item w3-button w3-button"
+                        onclick="hrefing(event, 'toPageThree')">3</a>
+                    <!-- To other href selection template 2 -->
+                    <a href="/client/selectionProd2" class="w3-bar-item w3-button w3-button"
+                        onclick="hrefing(event, 'toPageTwo')">»</a>
+                    </form>
+                </div>
+            </div>
+            <!-- To delais application from a href by an hidden input -->
+            <form method="post" action="/client/attenteDelais/" onsubmit="endFunctionToDelais()">{% csrf_token %}
+                <input type="submit" name="toDelaisApplication" value="Terminer Command" id="toDelaisApp" style="margin-left:1em;" />
+                <span id="enumProduct">
+                    {% for i in products %}
+                    {{i}}
+                    {% endfor %}
+                </span>
+            </form>
+            <form method="post" action="/client/selectionProd1/">
+                {% csrf_token %}
+                <input type="submit" name="jojo" value="toto" id="inputDeclencheur" style="display:none;">
+                <!-- First Photo Grid-->
+                <div class="w3-row-padding w3-padding-16 w3-center" id="food">
+                <div class="w3-quarter">
+                    <img src="/static/pictures/tartines.jpg" alt="Sandwich" style="width:100%"
+                        onclick="dataPicture('/client/selectionProd1/',  '/static/pictures/tartines.jpg', 'Tartines à la Provencale', 
+                                            '5', 'tartines servis avec de de l`huile d`olive.', 'grillé ou simplement réchauffé.', 
+                                            'Acompagnement de Thin, de basilic et ail de notre jardin.')">
+                    <h3>Tartines  à la Provencale</h3>
+                    <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+                </div>
+                <div class="w3-quarter">
+                    <img src="/static/pictures/mimosa.jpg" alt="Sandwich" style="width:100%"
+                        onclick="dataPicture('/client/selectionProd1/',  '/static/pictures/mimosa.jpg', 'Les Oeufs Mimosa à L`Anglaise',
+                                            '10',  'Servis avec des pistaches et un napage d`amande.',  'Mayonaise maison.', 
+                                            'Acompagné de tartine, de radis et d`un ramequin d`amande.')">
+                    <h3>Oeuf Mimosa à l'Anglaise</h3>
+                    <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+                </div>
+                <div class="w3-quarter">
+                    <img src="/static/pictures/quiche.jpg" alt="Sandwich" style="width:100%"
+                        onclick="dataPicture('/client/selectionProd1/', '/static/pictures/quiche.jpg', 'La quiche d`Auvergne', 
+                                             '6', 'A la poele sans croute.', 'Composé de lardon et de truffe la quiche d`Auvergne saura vous mettre en apétit.', 
+                                             'Sans matière grasse.')">
+                    <h3>Quiche Lorraine, La Recette de l'Antiquité</h3>
+                    <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+                </div>
+                <div class="w3-quarter">
+                    <img src="/static/pictures/saladeTomate.jpg" alt="Sandwich" style="width:100%"
+                        onclick="dataPicture('/client/selectionProd1/',  '/static/pictures/saladeTomate.jpg', 'La salade Mozzarella Tomate', 
+                                             '10',  'Basilic, Tomate, Tomate cerise, Thin, Salade', 'Provenant uniquement de notre jardin Bio.', 
+                                             'Fraiche et délicate, vous ouvrira les papilles.')">
+                    <h3>Salade de Tomate, A L'italienne</h3>
+                    <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+                </div>
+                </div>
+                <!-- Second Photo Grid-->
+                <div class="w3-row-padding w3-padding-16 w3-center">
+
+                    <div class="w3-quarter">
+                        <img src="/static/pictures/cacahuette.jpg" alt="Sandwich" style="width:100%"
+                            onclick="dataPicture('/client/selectionProd1/', '/static/pictures/cacahuette.jpg', 'Les cacahuettes de Mongoli', 
+                                                 '5', 'Un encas parfait pour vous mettre en apétit.', '2 variétés de cacahuette, Mongoli et Marawbounga.', 
+                                                 'Cacahuette cultivé par la force des pieds.')">
+                        <h3>Nos fameuses Cacahuettes</h3>
+                        <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+                    </div>
+                    <div class="w3-quarter">
+                        <img src="/static/pictures/olive.jpg" alt="Sandwich" style="width:100%"
+                            onclick="dataPicture('/client/selectionProd1/', '/static/pictures/olive.jpg','Les Olives du vergers.', 
+                                                 '5','Olive noire et Olive vertes', 'Cultivé à l`aide de techniques Savoyardes.', 'Attention au pépins.')">
+                        <h3>Les Olives du Vergers</h3>
+                        <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+                    </div>
+                </div>
+            </form>
+            <!-- Pagination -->
+            <div class="w3-center w3-padding-32">
+            <div class="w3-bar">
+                <a href="/clientselectionProd1" class="w3-bar-item w3-black w3-hover-black">1</a>
+                <a href="/client/selectionProd2" class="w3-bar-item w3-button w3-button">2</a>
+                <a href="/client/selectionProd3" class="w3-bar-item w3-button w3-button">3</a>
+                <a href="/client/selectionProd2" class="w3-bar-item w3-button w3-button">»</a>
+            </div>
+            </div>
+            <hr id="about">
+            <!-- About Section -->
+            <div class="w3-container w3-padding-32 w3-center">  
+            <h3>About Me, The Food Man</h3><br>
+            <img src="https://www.w3schools.com/w3images/chef.jpg" alt="Me" class="w3-image" 
+                style="display:block;margin:auto" width="800" height="533">
+            <div class="w3-padding-32">
+                <h4><b>I am Who I Am!</b></h4>
+                <h6><i>With Passion For Real, Good Food</i></h6>
+                <p>Just me, myself and I, exploring the universe of unknownment. I have a heart of love and an interest of lorem ipsum and mauris neque quam blog. I want to share my world with you. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+            </div>
+            </div>
+            <hr>
+            <!-- Footer -->
+            <footer class="w3-row-padding w3-padding-32">
+            <div class="w3-third">
+                <h3>FOOTER</h3>
+                <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+                <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+            </div>
+            <div class="w3-third">
+                <h3>BLOG POSTS</h3>
+                <ul class="w3-ul w3-hoverable">
+                <li class="w3-padding-16">
+                    <img src="https://www.w3schools.com/w3images/workshop.jpg" class="w3-left w3-margin-right" style="width:50px">
+                    <span class="w3-large">Lorem</span><br>
+                    <span>Sed mattis nunc</span>
+                </li>
+                <li class="w3-padding-16">
+                    <img src="https://www.w3schools.com/w3images/gondol.jpg" class="w3-left w3-margin-right" style="width:50px">
+                    <span class="w3-large">Ipsum</span><br>
+                    <span>Praes tinci sed</span>
+                </li> 
+                </ul>
+            </div>
+            <div class="w3-third w3-serif">
+                <h3>POPULAR TAGS</h3>
+                <p>
+                <span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Dinner</span>
+                <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Salmon</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">France</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Drinks</span>
+                <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Flavors</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Cuisine</span>
+                <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Chicken</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Dressing</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Fried</span>
+                <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Fish</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Duck</span>
+                </p>
+            </div>
+            </footer>
+        <!-- End page content -->
+        </div>
+    </body>
+</html>
+
+<style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
+    .w3-bar-block .w3-bar-item {padding:20px}
+    img:hover{border:1px solid black; cursor:pointer;}
+    input{border:1px solid black;}
+    input:hover{cursor:pointer;}
+</style>
+
+<script>
+//Recuperate from an input all data needed on the picture.
+//The last url for a retour, the picture url, his name, price and informations on the product.
+function dataPicture(lastUrl, image, nameProduct, prix, info1, info2, info3)
+{
+    input = document.getElementById("inputDeclencheur");
+
+    input.value  = lastUrl    + "+" + image + "+" + nameProduct;
+    input.value += "+" + prix + "+" + info1 + "+" + info2 + "+" + info3;
+    input.value += "-" + "{{products}}"; 
+    input.click();
+}
+//On click on terminate commande button, we transfert data from an hidden input from his value.
+function endFunctionToDelais()
+{
+    input = document.getElementById("toDelaisApp");
+    input.style.visibility = "hidden";
+    input.value = "{{products}}";
+}
+function hrefing(e, idDiv)
+{
+    e.preventDefault();
+    input = document.getElementById(idDiv);
+    input.value = "{{products}}";
+    input.click();
+}
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+}
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+</script>
+

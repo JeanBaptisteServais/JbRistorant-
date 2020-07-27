@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="shortcut icon" type="image/ico" href="img/favicon.gif" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+        <script src="{% static 'js/globalFunction/globalFunction.js' %}"></script>
+        <title> Désserts </title>
+    </head>
+    <body>
+        <!-- Navbar (sit on top) -->
+        {% include "interfaceWeb/navebarre.html" %}
+        <!-- !PAGE CONTENT! -->
+        <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+            <div class="w3-center w3-padding-32">
+                <div class="w3-bar">
+                    <form action="/client/selectionProd1/" method="POST">{% csrf_token %}
+                        <input type="submit" id="toPageOne" name="page" style="display:none;">
+                    </form>
+                    <form action="/client/selectionProd2/" method="POST">{% csrf_token %}
+                        <input type="submit" id="toPageTwo" name="page" style="display:none;">
+                    </form>
+                    <form action="/client/selectionProd3/" method="POST">{% csrf_token %}
+                        <input type="submit" id="toPageThree" name="page" style="display:none;">
+                    </form>
+                    <a href="/client/selectionProd2"  class="w3-bar-item w3-button w3-button" onclick="hrefing(event, 'toPageTwo')">«</a>
+                    <a href="/client/selectionProd1" class="w3-bar-item w3-button w3-button" onclick="hrefing(event, 'toPageOne')">1</a>
+                    <a href="/client/selectionProd2" class="w3-bar-item w3-button w3-button" onclick="hrefing(event, 'toPageTwo')">2</a>
+                    <a href="/client/selectionProd3"  class="w3-bar-item w3-black w3-hover-black"onclick="hrefing(event, 'toPageThree')">3</a>
+                </div>
+            </div>
+            <form method="post" action="/client/attenteDelais/" onsubmit="endFunctionToDelais()"> {% csrf_token %}
+                <input type="submit" name="toDelaisApplication" value="Terminer Command" id="toDelaisApp"
+                    style="margin-left:1em;" />
+                <span id="enumProduct">
+                    {% for i in products %}
+                    {{i}}
+                    {% endfor %}
+                </span>
+            </form>
+            <!-- First Photo Grid-->
+            <form method="post" action="/client/selectionProd3/"> {% csrf_token %}
+                <input type="submit" name="jojo" value="toto" id="inputDeclencheur" style="display:none;">
+            <div class="w3-row-padding w3-padding-16 w3-center" id="food">
+            <div class="w3-quarter">
+                <img src="/static/pictures/crepe.jpg" alt="Sandwich" style="width:100%"
+                onclick="dataPicture('/client/selectionProd3/', '/static/pictures/crepe.jpg','Les crèpes et son napage de fruits', '5', 'bon', 'savoureux', 'généreux')">
+                <h3>Les crèpes et son napage de fruits</h3>
+                <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+            </div>
+            <div class="w3-quarter">
+                <img src="/static/pictures/ileFlottante.jpg" alt="Steak" style="width:100%"
+                onclick="dataPicture('/client/selectionProd3/', '/static/pictures/ileFlottante.jpg','Ile flottante et son support sableux', '5', 'bon', 'savoureux', 'généreux')">
+                <h3>Ile flottante et son support sableux</h3>
+                <p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+            </div>
+            <div class="w3-quarter">
+                <img src="/static/pictures/mousse.jpg" alt="Cherries" style="width:100%"
+                onclick="dataPicture('/client/selectionProd3/', '/static/pictures/mousse.jpg','La mousse à la Framboise', '5', 'bon', 'savoureux', 'généreux')">
+                <h3>La mousse à la Framboise</h3>
+                <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+                <p>What else?</p>
+            </div>
+            <div class="w3-quarter">
+                <img src="/static/pictures/granitas.jpg" alt="Pasta and Wine" style="width:100%"
+                onclick="dataPicture('/client/selectionProd3/', '/static/pictures/granitas.jpg','Les Granitas Maraja', '5', 'bon', 'savoureux', 'généreux')">
+                <h3>Les Granitas Maraja</h3>
+                <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+            </div>
+            </div>
+            <!-- Second Photo Grid-->
+            <div class="w3-row-padding w3-padding-16 w3-center">
+            <div class="w3-quarter">
+                <img src="/static/pictures/glace.jpg" alt="Popsicle" style="width:100%"
+                onclick="dataPicture('/client/selectionProd3/', '/static/pictures/glace.jpg','Les Glaces à la Chilienne', '5', 'bon', 'savoureux', 'généreux')">
+                <h3>Les Glaces à la Chilienne</h3>
+                <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+            </div>
+            <div class="w3-quarter">
+                <img src="/static/pictures/gauffre.jpg" alt="Salmon" style="width:100%"
+                onclick="dataPicture('/client/selectionProd3/', '/static/pictures/gauffre.jpg','Nos Gauffres napés de chocolat', '5', 'bon', 'savoureux', 'généreux')">
+                <h3>Nos Gauffres napés de chocolat</h3>
+                <p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+            </div>
+            </form>
+            </div>
+            <!-- Pagination -->
+            <div class="w3-center w3-padding-32">
+            <div class="w3-bar">
+                <a href="/client/selectionProd2" class="w3-bar-item w3-button w3-button">«</a>
+                <a href="/client/selectionProd1" class="w3-bar-item w3-button w3-button">1</a>
+                <a href="/client/selectionProd2" class="w3-bar-item w3-button w3-button">2</a>
+                <a href="/client/selectionProd3" class="w3-bar-item w3-black w3-hover-black">3</a>
+            </div>
+            </div> 
+            <hr id="about">
+            <!-- About Section -->
+            <div class="w3-container w3-padding-32 w3-center">  
+            <h3>About Me, The Food Man</h3><br>
+            <img src="https://www.w3schools.com/w3images/chef.jpg" alt="Me" class="w3-image" 
+                style="display:block;margin:auto" width="800" height="533">
+            <div class="w3-padding-32">
+                <h4><b>I am Who I Am!</b></h4>
+                <h6><i>With Passion For Real, Good Food</i></h6>
+                <p>Just me, myself and I, exploring the universe of unknownment. I have a heart of love and an interest of lorem ipsum and mauris neque quam blog. I want to share my world with you. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+            </div>
+            </div>
+            <hr>
+            <!-- Footer -->
+            <footer class="w3-row-padding w3-padding-32">
+            <div class="w3-third">
+                <h3>FOOTER</h3>
+                <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+                <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+            </div>
+            <div class="w3-third">
+                <h3>BLOG POSTS</h3>
+                <ul class="w3-ul w3-hoverable">
+                <li class="w3-padding-16">
+                    <img src="https://www.w3schools.com/w3images/workshop.jpg" class="w3-left w3-margin-right" style="width:50px">
+                    <span class="w3-large">Lorem</span><br>
+                    <span>Sed mattis nunc</span>
+                </li>
+                <li class="w3-padding-16">
+                    <img src="https://www.w3schools.com/w3images/gondol.jpg" class="w3-left w3-margin-right" style="width:50px">
+                    <span class="w3-large">Ipsum</span><br>
+                    <span>Praes tinci sed</span>
+                </li> 
+                </ul>
+            </div>
+            <div class="w3-third w3-serif">
+                <h3>POPULAR TAGS</h3>
+                <p>
+                <span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Dinner</span>
+                <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Salmon</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">France</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Drinks</span>
+                <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Flavors</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Cuisine</span>
+                <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Chicken</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Dressing</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Fried</span>
+                <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Fish</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Duck</span>
+                </p>
+            </div>
+            </footer>
+        <!-- End page content -->
+        </div>
+    </body>
+</html>
+
+<style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
+    .w3-bar-block .w3-bar-item {padding:20px}
+    img:hover{ border:1px solid black;cursor:pointer;}
+    input{border:1px solid black;}
+    input:hover{cursor:pointer;}
+</style>
+<script>
+function dataPicture(lastUrl, image, nameProduct, prix, info1, info2, info3)
+{
+    input = document.getElementById("inputDeclencheur");
+    input.value  = lastUrl + "+" + image + "+" + nameProduct;
+    input.value += "+" + prix + "+" + info1 + "+" + info2 + "+" + info3;
+    input.value += "-" + "{{products}}"; 
+    input.click();
+}
+function endFunctionToDelais()
+{
+    input = document.getElementById("toDelaisApp");
+    input.style.visibility = "hidden";
+    input.value = "{{products}}";
+}
+function hrefing(e, idDiv)
+{
+    e.preventDefault();
+    input = document.getElementById(idDiv);
+    input.value = "{{products}}";
+    input.click();
+}
+
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+}
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+</script>

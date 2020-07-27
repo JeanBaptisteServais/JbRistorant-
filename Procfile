@@ -1,0 +1,1 @@
+web: gunicorn jbristoranté.wsgi --log-file -

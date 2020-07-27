@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="shortcut icon" type="image/ico" href="img/favicon.gif" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+        <script src="{% static 'js/globalFunction/globalFunction.js' %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+        <title> titre </title>
+    </head>
+    <body>
+        <!-- Navbar (sit on top) -->
+        {% include "interfaceWeb/navebarre.html" %}
+        <!-- !PAGE CONTENT! -->
+        <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px" id="waitingCommand">
+            <!-- First Photo Grid-->
+            <div class="w3-row-padding w3-padding-10 w3-center" id="food">
+                <img src="/static/waitService/0.jpg"style="width:80%;" id="serveur">
+            </div>
+        </div>
+    </body>
+</html>
+<style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
+    .w3-bar-block .w3-bar-item {padding:20px}
+    input{border:1px solid black;}input:hover{cursor:pointer;}
+    #allCommands{display:none;}
+    #commands{padding-top:1em;}
+</style>
+<script>
+function changePicture(numeroPicture)
+{
+    image = document.getElementById("serveur");
+    image.src = "/static/waitService/" + numeroPicture + ".jpg"
+}
+setTimeout(function(){ changePicture(1) },2000);
+setTimeout(function(){ changePicture(2) },4000);
+setTimeout(function(){ changePicture(3) },6000);
+setTimeout(function(){ changePicture(4) },8000);
+setTimeout(function(){ changePicture(5) },10000);
+setTimeout(function(){ changePicture(6) },12000);
+setTimeout(function(){ changePicture(7) },14000);
+setTimeout(function(){ changePicture(8) },16000);
+setTimeout(function(){ changePicture(9) },18000);
+function commandCourse()
+{
+    document.getElementById("waitingCommand").style.display = "none";
+    document.getElementById("allCommands").style.display = "block";
+        
+}
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+}
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+function toHidde(plateGabarit, divPlateId, titreDiv)
+{
+    if (plateGabarit == "")
+    {
+        document.getElementById(divPlateId).style.display  = "none";
+        document.getElementById(titreDiv).style.display  = "none";
+    }
+}
+toHidde("{{plate1}}", "plate1Div", "plate1H");
+toHidde("{{plate2}}", "plate2Div", "plate2H");
+toHidde("{{plate3}}", "plate3Div", "plate3H");
+</script>
