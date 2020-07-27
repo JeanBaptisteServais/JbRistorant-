@@ -5,8 +5,21 @@ Apriori algorythme, delais programme, serveur min distance
 
 <h3>Apriori algorythm</h3>
 
+c1 l1/c2 l2 and associate rules
 
 <h3>Delais programme</h3>
 
+a = time work * 0.9<br>
+constante = 5 minutes
+
+Delai cooker: (time all plates theoric / nb cooker) + (a * constante) <br>
+Delai serveur: (nb menu / nb serveur) + (a * constante) + (time distance * 2)
+
+total delais = Delai cooker + Delai serveur
+
+not only my fault if it wrong i got help
+
 
 <h3>serveur min distance</h3>
+
+current pos (add closed list) -> min (all other table in command)
