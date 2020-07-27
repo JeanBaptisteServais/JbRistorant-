@@ -3,7 +3,7 @@ Apriori algorythme, delais programme, serveur min distance
 
 awaible on: https://jbristorante.herokuapp.com/
 
-1) Command you're plate
+1) Command you're plate (and let you try by suggestions)
 
 2) see the delais 
 
