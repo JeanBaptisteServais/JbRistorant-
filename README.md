@@ -5,7 +5,7 @@ Apriori algorythme, delais programme, serveur min distance
 
 <h3>Apriori algorythm</h3>
 
-c1 l1/c2 l2 and associate rules (100%) on 5000 simulates commands from 24 plates
+c1 l1/c2 l2 and associate rules (by pairs of 2 of 100%) on 5000 simulates commands from 24 plates
 
 <h3>Delais programme</h3>
 
