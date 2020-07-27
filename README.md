@@ -9,17 +9,7 @@ c1 l1/c2 l2 and associate rules (by pairs of 2 of 100%) on 5000 simulates comman
 
 <h3>Delais programme: delais service</h3>
 
-a = time work * 0.9<br>
-constante = 5 minutes
-
-Delai cooker: (time all plates theoric / nb cooker) + a + constante <br>
-Delai serveur: (nb menu / nb serveur) + (time distance * 2) + a + constante <br>
-or<br>
-Delai serveur: (nb menu / (nb serveur + (time distance * 2) + a + constante)
-
-total delais = Delai cooker + Delai serveur
-
-not only my fault if it wrong i got help
+in function of nb of cooker and serveur, the distance of the table and the number of command.
 
 
 <h3>serveur min distance: serveur service</h3>
