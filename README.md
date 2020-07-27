@@ -9,7 +9,7 @@ c1 l1/c2 l2 and associate rules (by pairs of 2 of 100%) on 5000 simulates comman
 
 <h3>Delais programme: delais service</h3>
 
-in function of nb of cooker and serveur, the distance of the table and the number of command.
+in function of nb of cooker and serveur, the distance of the table and the number of command and the time of work of workers.
 
 
 <h3>serveur min distance: serveur service</h3>
